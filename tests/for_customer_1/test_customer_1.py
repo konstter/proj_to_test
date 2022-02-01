@@ -2,11 +2,20 @@ import pytest
 
 
 @pytest.mark.prb
-def test_customer(create_admin, create_customer):
+def test_customer_create(create_admin, create_customer):
     print(f'...and [{create_customer.name}] too')
     assert create_customer.created is True
+
+
+def test_customer_name(create_admin, create_customer):
     assert create_customer.name[:8] == 'Customer'
+
+
+def test_customer_machines_list(create_admin, create_customer):
     assert create_customer.machines == []
+
+
+def test_admin_customer(create_admin, create_customer):
     assert len(create_admin.customers) == 1
 
 
